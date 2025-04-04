@@ -2,6 +2,22 @@ import { motion } from 'framer-motion';
 import CountUp from 'react-countup';
 
 export default function Hero() {
+  const scrollToContact = () => {
+    const contactSection = document.getElementById('contact');
+    if (contactSection) {
+      const offset = 80; // Ajustez selon la hauteur de votre navbar
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = contactSection.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden px-4 lg:px-0">
       <div className="absolute inset-0">
@@ -29,7 +45,10 @@ export default function Hero() {
               Transformez votre passion pour les marchés financiers en expertise professionnelle avec notre formation complète et personnalisée.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-6 mb-8">
-              <button className="bg-orange-cta hover:bg-opacity-90 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:shadow-[0_0_15px_#f97316] w-full sm:w-auto">
+              <button 
+                onClick={scrollToContact}
+                className="bg-orange-cta hover:bg-opacity-90 text-white px-8 py-3 rounded-full font-semibold transition-all duration-300 hover:shadow-[0_0_15px_#f97316] w-full sm:w-auto"
+              >
                 Démarrer la formation
               </button>
               <div className="flex items-center gap-2">
